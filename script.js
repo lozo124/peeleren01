@@ -62,3 +62,23 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
   });
 });
+
+// ===== Dynamic Date: current date minus 1 day, DD/MM/YYYY =====
+(function () {
+  const dateElements = document.querySelectorAll('[data-dynamic-date]');
+  if (!dateElements.length) return;
+
+  const date = new Date();
+  date.setDate(date.getDate() - 1);
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  const formattedDate = `${day}/${month}/${year}`;
+
+  dateElements.forEach(function (element) {
+    element.textContent = formattedDate;
+  });
+})();
+
